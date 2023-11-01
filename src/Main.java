@@ -1,11 +1,21 @@
 import java.io.File;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\dell\\Desktop";
+
+
+        String filePath = "C:\\Users\\Artem.Gusev\\Desktop\\For learning";
         File file = new File(filePath);
 
-        System.out.println(getFolderSize(file));
+        long start = System.currentTimeMillis();
+        FolderSizeCalculator calculator = new FolderSizeCalculator(file);
+        ForkJoinPool pool = new ForkJoinPool();
+        long sum = pool.invoke(calculator);
+        System.out.println(sum);
+        System.out.println(System.currentTimeMillis() - start);
+
     }
     public static long getFolderSize(File path){
         if(path.isFile()){
