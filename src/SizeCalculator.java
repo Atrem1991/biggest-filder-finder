@@ -4,7 +4,7 @@ public class SizeCalculator {
         long Kb = 1024;
         long Mb = 1048576;
         long Gb = 1073741824;
-        long Tb = 1099511627776l;
+        long Tb = 1099511627776L;
 
         String result = null;
 
@@ -41,9 +41,9 @@ public class SizeCalculator {
         long Kb = 1024;
         long Mb = 1048576;
         long Gb = 1073741824;
-        long Tb = 1099511627776l;
+        long Tb = 1099511627776L;
 
-        long result = 0;
+        long result = -1;
 
         if(measureUnit.equalsIgnoreCase("b")){
             result = digits;
@@ -60,7 +60,7 @@ public class SizeCalculator {
                 || measureUnit.equalsIgnoreCase("tb")){
             result = digits * Tb;
         } else {
-            System.out.print("");
+           return result;
         }
         return result;
     }

@@ -9,21 +9,28 @@ public class Node {
     private long limit;
 
     public Node(File folder, long limit){
-        this.folder = folder;
+        this(folder);
         children = new ArrayList<>();
         this.limit = limit;
+    }
+
+    public Node(File folder){
+        this.folder = folder;
+        children = new ArrayList<>();
     }
 
     public File getFolder(){
         return folder;
     }
 
-    public long getLimit() {
+    private long setLimit(long limit) {
+        this.limit = limit;
         return limit;
     }
 
     public void addChild(Node node){
         node.setLevel(level + 1);
+        node.setLimit(limit);
         children.add(node);
     }
 
@@ -50,7 +57,7 @@ public class Node {
         String size = SizeCalculator.getHumanReadableSize(getSize());
         builder.append(folder.getName() + " - " + size + "\n");
         for(Node child : children){
-            if(child.getSize() <= getLimit()) {
+            if(child.getSize() <= limit) {
                 continue;
             }
                 builder.append("  ".repeat(level+1) + child.toString());

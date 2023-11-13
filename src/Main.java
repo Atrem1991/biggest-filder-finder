@@ -6,10 +6,12 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
 
-        String filePath = "C:\\Users\\Artem.Gusev\\Desktop";
-        File file = new File(filePath);
-        long sizeLimit = 50*1024*1024;
+        ParametersBag parametersBag = new ParametersBag(args);
 
+        String filePath = parametersBag.getPath();
+        long sizeLimit = parametersBag.getLimit();
+
+        File file = new File(filePath);
         Node root = new Node(file, sizeLimit);
 
 
